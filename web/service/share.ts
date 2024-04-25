@@ -137,7 +137,7 @@ export const fetchEnterpriseFeatures = async () => {
 }
 
 export const fetchWebSAMLSSOUrl = async () => {
-  return (getAction('get', false))(getUrl('/enterprise/sso/saml/login-features', false, '')) as Promise<{ url: string }>
+  return (getAction('get', false))(getUrl('/enterprise/sso/saml/login', false, '')) as Promise<{ url: string }>
 }
 
 export const fetchWebOIDCSSOUrl = async () => {
