@@ -20,16 +20,12 @@ const EnterpriseWebSSOForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    const webSSOToken = localStorage.getItem('web_sso_token') || webSSOTokenFromUrl
+    if (webSSOTokenFromUrl) {
+      localStorage.setItem('web_sso_token', webSSOTokenFromUrl)
 
-    if (webSSOToken) {
-      localStorage.setItem('web_sso_token', webSSOToken)
-
-      const redirectUrl = localStorage.getItem('redirect_url')
-      if (redirectUrl) {
+      const redirectUrl = localStorage.getItem('web_app_redirect_url')
+      if (redirectUrl)
         router.push(redirectUrl)
-        localStorage.removeItem('redirect_url')
-      }
     }
 
     if (message) {
@@ -59,7 +55,7 @@ const EnterpriseWebSSOForm: FC = () => {
     else {
       Toast.notify({
         type: 'error',
-        message: 'Invalid SSO protocal',
+        message: 'sso protocal is not supported.',
       })
       setIsLoading(false)
     }

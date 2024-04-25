@@ -19,7 +19,7 @@ const SSOForm: FC<{
     if (!webSSOToken) {
       fetchEnterpriseFeatures().then((res) => {
         if (res.sso_enforced_for_web) {
-          localStorage.setItem('redirect_url', pathname)
+          localStorage.setItem('web_app_redirect_url', pathname)
           router.push(`/webapp-sso?protocal=${res.sso_enforced_for_web_protocol}`)
         }
         else {
